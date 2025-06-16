@@ -12,14 +12,16 @@ function Login() {
             const response = await axios.post('http://localhost:8000/usuarios/login', {
                 username,
                 password
+            }, {
+                withCredentials: true  // NECESARIO para que axios reciba y guarde la cookie
             })
-
-            if (response.data.role === 'admin') navigate('/admin')
-            else navigate('/home')
+            console.log('Login OK:', response)
+            navigate('/home')
         } catch (error) {
             alert('Login inválido')
         }
     }
+
 
     return (
         <div style={{ maxWidth: 400, margin: 'auto', paddingTop: 100 }}>
