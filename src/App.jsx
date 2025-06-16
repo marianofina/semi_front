@@ -5,6 +5,7 @@ import PrivateRoute from './pages/PrivateRoute.jsx'
 import Admin from './pages/Admin'
 import {AuthProvider} from "./context/AuthContext.jsx";
 import {Home} from "./pages/Home.jsx";
+import Noticia from "./pages/Noticia.jsx";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                             </PrivateRoute>
                         }
                     />
+                    <Route path="/noticia/por-id/:id" element={<Noticia />} />
                     <Route path="/admin" element={<Admin />} />
                 </Routes>
             </AuthProvider>

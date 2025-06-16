@@ -1,9 +1,15 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+
 
 function Noticias({ noticias }) {
     if (!noticias || noticias.length === 0) {
         return <div>No hay noticias para mostrar.</div>
     }
+
+    console.log(noticias)
+
+    const navigate = useNavigate()
 
     return (
         <div style={{ padding: '2rem' }}>
@@ -15,7 +21,8 @@ function Noticias({ noticias }) {
                     padding: '1rem',
                     marginBottom: '1rem',
                     boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
-                }}>
+                }}
+                     onClick={() => navigate(`/noticia/por-id/${noticia.id}`)}>
                     <h3>{noticia.titulo}</h3>
                     <p><strong>Autor:</strong> {noticia.autor}</p>
                     <p><strong>Resumen:</strong> {noticia.resumen}</p>
