@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import {NoticiaItem} from "./NoticiaItem.jsx";
 
 
 function Noticias({ noticias }) {
@@ -7,30 +7,25 @@ function Noticias({ noticias }) {
         return <div>No hay noticias para mostrar.</div>
     }
 
-    console.log(noticias)
+    let hoy = new Date();
 
-    const navigate = useNavigate()
+    const noticiasHoy = noticias.filter(n => {
+        const fechaCorrecta = n.fecha_publicacion.slice(0, 23);
+        const fecha = new Date(fechaCorrecta);
+        return fecha.getFullYear() === hoy.getFullYear() &&
+            fecha.getMonth() === hoy.getMonth() &&
+            fecha.getDate() === hoy.getDate();
+    });
+
 
     return (
         <div style={{ padding: '2rem' }}>
             <h2>Últimas noticias</h2>
-            {noticias.map((noticia, index) => (
-                <div key={index} style={{
-                    border: '1px solid #ccc',
-                    borderRadius: '10px',
-                    padding: '1rem',
-                    marginBottom: '1rem',
-                    boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
-                }}
-                     onClick={() => navigate(`/noticia/por-id/${noticia.id}`)}>
-                    <h3>{noticia.titulo}</h3>
-                    <p><strong>Autor:</strong> {noticia.autor}</p>
-                    <p><strong>Resumen:</strong> {noticia.resumen}</p>
-                    {/* <p><strong>Contenido:</strong> {noticia.contenido}</p> */}
-                </div>
+            {noticiasHoy.map(n => (
+                <NoticiaItem key={n.id} n={n} />
             ))}
         </div>
-    )
+    );
 }
 
 export default Noticias
