@@ -33,7 +33,7 @@ export const NoticiaItem = ({n}) => {
             <span> - </span>
             <span>{n.tematica_nombre}</span>
             <h3>{n.titulo}</h3>
-            <span>{Math.round(n.resumen.length / 900)} min</span>
+            <span>{Math.round((n.contenido.length * n.nivel_resumen) / 900)} min</span>
             {
                 n.fecha_leido != null ?
                     <span> - Leído</span> :

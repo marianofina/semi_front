@@ -58,9 +58,11 @@ function App() {
                             </PrivateRoute>
                         }
                     />
-                    <Route path="/admin" element={<Admin />} />
                 </Routes>
             </AuthProvider>
+            <Routes>
+                <Route path="/admin/nueva-noticia" element={<Admin />} />
+            </Routes>
         </BrowserRouter>
     )
 }

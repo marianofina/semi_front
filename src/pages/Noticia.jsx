@@ -32,7 +32,11 @@ function Noticia() {
     return (
         <div style={{ maxWidth: 800, margin: 'auto', padding: 20}}>
             <h1>{noticia.titulo}</h1>
-            <p>{noticia.resumen}</p>
+            {
+                noticia.resumen != null ?
+                    <p>{noticia.resumen}</p> :
+                    <p>{noticia.contenido}</p>
+            }
             <p><strong>Fuente:</strong> {noticia.portal_nombre}</p>
             {
                 noticia.autor != null ?
